@@ -10,7 +10,7 @@ const Layout = (props: LayoutProps) => {
     return (
         <Wrapper>
             <Header />
-            <Main></Main>
+            <Main>{props.children}</Main>
             <BottomMenu />
         </Wrapper>
     )
@@ -28,6 +28,8 @@ const Main = styled.div`
     flex-direction: column;
     width: 100vw;
     height: calc(100vh - 60px - 104px);
+    overflow-y: auto;
+    padding: 0 20px;
 `
 
 export default Layout
