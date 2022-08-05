@@ -9,7 +9,7 @@ import eqIcon from '@assets/icon/eq.svg'
 const BottomMenu = () => {
     return (
         <Wrapper>
-            <div className="item">
+            <div className="item active">
                 <img src={homeIcon} alt="Inicio" />
                 <p>Inicio</p>
             </div>
@@ -59,9 +59,12 @@ const Wrapper = styled.div`
         }
 
         :hover {
-            background-color: var(--primary-color);
             cursor: pointer;
         }
+    }
+
+    .active {
+        background-color: var(--primary-color);
     }
 `
 

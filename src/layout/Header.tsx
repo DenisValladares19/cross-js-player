@@ -48,7 +48,9 @@ const Wrapper = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-right: 5px;
+        padding: 0 10px;
+        height: 100%;
+        cursor: pointer;
     }
 
     .avatar {
@@ -61,6 +63,7 @@ const Wrapper = styled.div`
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
+        cursor: pointer;
 
         img {
             width: 100%;
