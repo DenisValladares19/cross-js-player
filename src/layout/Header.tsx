@@ -8,7 +8,6 @@ const Header = () => {
     return (
         <Wrapper>
             <div className="name-app">Cross Js</div>
-
             <div className="container-avatar">
                 <div className="search">
                     <img src={searchIcon} alt="Buscar" />
