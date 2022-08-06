@@ -1,10 +1,24 @@
-import Layout from '@layout/index'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Layout from './layout'
+
+// pages are imported here
+import Home from '@pages/Home'
+import Search from '@pages/Search'
+import Local from '@pages/Local'
+import Equalizer from '@pages/Equalizer'
 
 function App() {
     return (
-        <Layout>
-            <div>Hello World</div>
-        </Layout>
+        <Router>
+            <Layout>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/search" element={<Search />} />
+                    <Route path="local" element={<Local />} />
+                    <Route path="equalizer" element={<Equalizer />} />
+                </Routes>
+            </Layout>
+        </Router>
     )
 }
 
