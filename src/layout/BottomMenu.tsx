@@ -5,29 +5,48 @@ import homeIcon from '@assets/icon/home.svg'
 import searchIcon from '@assets/icon/search.svg'
 import folderIcon from '@assets/icon/folder.svg'
 import eqIcon from '@assets/icon/eq.svg'
+import { Link, useLocation } from 'react-router-dom'
 
 const BottomMenu = () => {
+    const { pathname } = useLocation()
+
     return (
         <Wrapper>
-            <div className="item active">
-                <img src={homeIcon} alt="Inicio" />
-                <p>Inicio</p>
-            </div>
+            <Link to="/">
+                <div className={`item ${pathname === '/' ? 'active' : ''}`}>
+                    <img src={homeIcon} alt="Inicio" />
+                    <p>Inicio</p>
+                </div>
+            </Link>
 
-            <div className="item">
-                <img src={searchIcon} alt="Buscar" />
-                <p>Buscar</p>
-            </div>
+            <Link to="/search">
+                <div
+                    className={`item ${pathname === '/search' ? 'active' : ''}`}
+                >
+                    <img src={searchIcon} alt="Buscar" />
+                    <p>Buscar</p>
+                </div>
+            </Link>
 
-            <div className="item">
-                <img src={folderIcon} alt="Local" />
-                <p>Local</p>
-            </div>
+            <Link to="/local">
+                <div
+                    className={`item ${pathname === '/local' ? 'active' : ''}`}
+                >
+                    <img src={folderIcon} alt="Local" />
+                    <p>Local</p>
+                </div>
+            </Link>
 
-            <div className="item">
-                <img src={eqIcon} alt="Ecualizador" />
-                <p>Ecualizador</p>
-            </div>
+            <Link to="/equalizer">
+                <div
+                    className={`item ${
+                        pathname === '/equalizer' ? 'active' : ''
+                    }`}
+                >
+                    <img src={eqIcon} alt="Ecualizador" />
+                    <p>Ecualizador</p>
+                </div>
+            </Link>
         </Wrapper>
     )
 }
@@ -39,6 +58,10 @@ const Wrapper = styled.div`
     width: 100vw;
     height: 60px;
     background-color: var(--secondary-color);
+
+    a {
+        height: 100%;
+    }
 
     .item {
         display: flex;
@@ -56,6 +79,8 @@ const Wrapper = styled.div`
         p {
             font-size: 12px;
             font-weight: 400;
+            color: var(--font-color);
+            text-decoration: none;
         }
 
         :hover {
