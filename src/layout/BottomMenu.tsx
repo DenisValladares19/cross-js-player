@@ -1,57 +1,80 @@
 import styled from 'styled-components'
+import { Link, useLocation } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 // assets
 import homeIcon from '@assets/icon/home.svg'
 import searchIcon from '@assets/icon/search.svg'
 import folderIcon from '@assets/icon/folder.svg'
 import eqIcon from '@assets/icon/eq.svg'
-import { Link, useLocation } from 'react-router-dom'
 
 const BottomMenu = () => {
     const { pathname } = useLocation()
 
     return (
-        <Wrapper>
-            <Link to="/">
-                <div className={`item ${pathname === '/' ? 'active' : ''}`}>
+        <Wrapper layout>
+            <Link to="/" key="/">
+                <motion.div
+                    className={`item ${pathname === '/' ? 'active' : ''}`}
+                    initial={{ opacity: 0.5 }}
+                    transition={{ duration: 1 }}
+                    animate={{
+                        opacity: 1,
+                    }}
+                >
                     <img src={homeIcon} alt="Inicio" />
                     <p>Inicio</p>
-                </div>
+                </motion.div>
             </Link>
 
-            <Link to="/search">
-                <div
+            <Link to="/search" key="/search">
+                <motion.div
                     className={`item ${pathname === '/search' ? 'active' : ''}`}
+                    initial={{ opacity: 0.5 }}
+                    transition={{ duration: 1 }}
+                    animate={{
+                        opacity: 1,
+                    }}
                 >
                     <img src={searchIcon} alt="Buscar" />
                     <p>Buscar</p>
-                </div>
+                </motion.div>
             </Link>
 
-            <Link to="/local">
-                <div
+            <Link to="/local" key="/local">
+                <motion.div
                     className={`item ${pathname === '/local' ? 'active' : ''}`}
+                    initial={{ opacity: 0.5 }}
+                    transition={{ duration: 1 }}
+                    animate={{
+                        opacity: 1,
+                    }}
                 >
                     <img src={folderIcon} alt="Local" />
                     <p>Local</p>
-                </div>
+                </motion.div>
             </Link>
 
-            <Link to="/equalizer">
-                <div
+            <Link to="/equalizer" key="equalizer">
+                <motion.div
                     className={`item ${
                         pathname === '/equalizer' ? 'active' : ''
                     }`}
+                    initial={{ opacity: 0.5 }}
+                    transition={{ duration: 1 }}
+                    animate={{
+                        opacity: 1,
+                    }}
                 >
                     <img src={eqIcon} alt="Ecualizador" />
                     <p>Ecualizador</p>
-                </div>
+                </motion.div>
             </Link>
         </Wrapper>
     )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -70,6 +93,7 @@ const Wrapper = styled.div`
         justify-content: center;
         padding: 5px 15px;
         height: 100%;
+        transition: background-color 0.3s ease-in-out;
 
         img {
             width: 20px;

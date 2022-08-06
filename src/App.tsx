@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 import Layout from './layout'
 
 // pages are imported here
@@ -11,12 +12,14 @@ function App() {
     return (
         <Router>
             <Layout>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/search" element={<Search />} />
-                    <Route path="local" element={<Local />} />
-                    <Route path="equalizer" element={<Equalizer />} />
-                </Routes>
+                <AnimatePresence>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/search" element={<Search />} />
+                        <Route path="local" element={<Local />} />
+                        <Route path="equalizer" element={<Equalizer />} />
+                    </Routes>
+                </AnimatePresence>
             </Layout>
         </Router>
     )

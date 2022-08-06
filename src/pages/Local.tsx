@@ -1,7 +1,16 @@
-import Layout from '@layout/index'
+import { motion } from 'framer-motion'
 
 const Local = () => {
-    return <div>Local</div>
+    return (
+        <motion.div
+            initial={{ x: 100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: -100, opacity: 0 }}
+            transition={{ duration: 1, type: 'spring' }}
+        >
+            Local
+        </motion.div>
+    )
 }
 
 export default Local
