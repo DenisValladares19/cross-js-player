@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import BottomMenu from './BottomMenu'
 import Header from './Header'
@@ -30,11 +31,15 @@ const calculateHeight = (
 }
 
 const Layout = (props: LayoutProps) => {
+    const { pathname } = useLocation()
+
     return (
         <Wrapper>
-            {!props.hiddenHeader && <Header />}
+            {(pathname === '/search' ? false : !props.hiddenHeader) && (
+                <Header />
+            )}
             <Main
-                hiddenHeader={props.hiddenHeader}
+                hiddenHeader={props.hiddenHeader || pathname === '/search'}
                 hiddenBottomMenu={props.hiddenBottomMenu}
             >
                 {props.children}
