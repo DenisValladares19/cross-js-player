@@ -2,55 +2,11 @@ import { useEffect, useReducer } from 'react'
 import typeStateFetch from '@root/interfaces/TypeStateFetch'
 import ResponseApi from '@root/interfaces/ResponseApi'
 
-const initialState: typeStateFetch = {
-    isLoading: false,
-    isSuccess: false,
-    isError: false,
-    message: '',
-    data: null,
-}
-
-interface typeAction {
+interface typeAction<M extends Object> {
     type: 'INIT' | 'SUCCESS' | 'ERROR'
-    payload?: any
-}
-
-const reducerApi = (
-    state: typeStateFetch,
-    action: typeAction
-): typeStateFetch => {
-    switch (action.type) {
-        case 'INIT':
-            return {
-                ...state,
-                isLoading: true,
-                isSuccess: false,
-                isError: false,
-            }
-
-        case 'SUCCESS':
-            return {
-                ...state,
-                isLoading: false,
-                isError: false,
-                isSuccess: false,
-                message: action.payload.messgae,
-                data: action.payload.data,
-            }
-
-        case 'ERROR':
-            return {
-                ...state,
-                isError: true,
-                isLoading: false,
-                isSuccess: false,
-                message: action.payload.message,
-            }
-
-        default:
-            return {
-                ...state,
-            }
+    payload?: {
+        message?: string
+        data?: M | null | undefined
     }
 }
 
@@ -60,7 +16,54 @@ interface typeRequest {
     data?: any
 }
 
-const useApi = (value: string | typeRequest) => {
+function useApi<T>(value: string | typeRequest) {
+    const initialState: typeStateFetch<T> = {
+        isLoading: false,
+        isSuccess: false,
+        isError: false,
+        message: '',
+        data: null,
+    }
+
+    const reducerApi = (
+        state: typeStateFetch<T>,
+        action: typeAction<T>
+    ): typeStateFetch<T> => {
+        switch (action.type) {
+            case 'INIT':
+                return {
+                    ...state,
+                    isLoading: true,
+                    isSuccess: false,
+                    isError: false,
+                }
+
+            case 'SUCCESS':
+                return {
+                    ...state,
+                    isLoading: false,
+                    isError: false,
+                    isSuccess: false,
+                    message: action.payload?.message,
+                    data: action.payload?.data,
+                }
+
+            case 'ERROR':
+                return {
+                    ...state,
+                    isError: true,
+                    isLoading: false,
+                    isSuccess: false,
+                    message: action.payload?.message,
+                }
+
+            default:
+                return {
+                    ...state,
+                }
+        }
+    }
+
     const [state, dispatch] = useReducer(reducerApi, initialState)
 
     useEffect(() => {

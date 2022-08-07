@@ -1,9 +1,9 @@
-interface typeStateFetch {
+interface typeStateFetch<T extends Object> {
     isLoading: boolean
     isSuccess: boolean
     isError: boolean
-    message: string
-    data: any
+    message: string | undefined | null
+    data: T | null | undefined
 }
 
 export default typeStateFetch
