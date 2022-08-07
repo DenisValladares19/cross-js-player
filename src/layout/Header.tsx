@@ -1,8 +1,9 @@
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 // assets
 import searchIcon from '@assets/icon/search.svg'
-import avatar from '@assets/img/avatar.png'
+import Avatar from '@components/Avatar'
 
 const Header = () => {
     return (
@@ -12,15 +13,13 @@ const Header = () => {
                 <div className="search">
                     <img src={searchIcon} alt="Buscar" />
                 </div>
-                <div className="avatar">
-                    <img src={avatar} alt="Avatar" />
-                </div>
+                <Avatar />
             </div>
         </Wrapper>
     )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -51,25 +50,6 @@ const Wrapper = styled.div`
         padding: 0 10px;
         height: 100%;
         cursor: pointer;
-    }
-
-    .avatar {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        background-color: var(--secondary-color);
-        border: 2px solid var(--font-color);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-        cursor: pointer;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
     }
 `
 

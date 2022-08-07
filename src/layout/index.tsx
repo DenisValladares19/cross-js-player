@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
+import { AnimatePresence } from 'framer-motion'
 import BottomMenu from './BottomMenu'
 import Header from './Header'
 
@@ -35,9 +36,11 @@ const Layout = (props: LayoutProps) => {
 
     return (
         <Wrapper>
-            {(pathname === '/search' ? false : !props.hiddenHeader) && (
-                <Header />
-            )}
+            <AnimatePresence>
+                {(pathname === '/search' ? false : !props.hiddenHeader) && (
+                    <Header />
+                )}
+            </AnimatePresence>
             <Main
                 hiddenHeader={props.hiddenHeader || pathname === '/search'}
                 hiddenBottomMenu={props.hiddenBottomMenu}
