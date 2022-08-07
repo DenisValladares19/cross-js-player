@@ -1,4 +1,4 @@
-import { useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import typeStateFetch from '@root/interfaces/TypeStateFetch'
 import ResponseApi from '@root/interfaces/ResponseApi'
 
@@ -63,16 +63,30 @@ interface typeRequest {
 const useApi = (value: string | typeRequest) => {
     const [state, dispatch] = useReducer(reducerApi, initialState)
 
-    const request = async (value: typeRequest) => {
+    useEffect(() => {
+        if (value) {
+            if (typeof value === 'string') {
+                request({
+                    url: value,
+                    method: 'GET',
+                    data: {},
+                })
+            } else {
+                request(value)
+            }
+        }
+    }, [])
+
+    const request = async (config: typeRequest) => {
         try {
             dispatch({ type: 'INIT' })
-            if (['POST', 'PUT'].includes(value.method)) {
-                value.data = JSON.stringify(value.data || {})
+            if (['POST', 'PUT'].includes(config.method)) {
+                config.data = JSON.stringify(config.data || {})
             }
 
-            const response = await fetch(value.url, {
-                body: value.data,
-                method: value.method,
+            const response = await fetch(config.url, {
+                body: config.data,
+                method: config.method,
                 headers: {
                     'Content-Type': 'application/json',
                 },
