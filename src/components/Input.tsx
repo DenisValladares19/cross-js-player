@@ -14,9 +14,9 @@ const Input = (props: InputProps) => {
         <Wrapper>
             <input
                 placeholder={props.placeHolder}
-                value={props.value ? props.value : null}
+                value={props.value && props.value}
                 onChange={(e) =>
-                    props.setValue ? props.setValue(e.target.value) : null
+                    props.setValue && props.setValue(e.target.value)
                 }
                 type={props.type ? props.type : 'text'}
             />
