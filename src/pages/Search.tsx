@@ -1,16 +1,52 @@
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { ResultSearch, Item } from '@root/interfaces/ResultSearch'
 
-// components
+// components and hooks
 import Avatar from '@components/Avatar'
 import Input from '@components/Input'
+import useApi from '@hooks/useApi'
 
 // assets
 import backIcon from '@assets/icon/back.svg'
+import { deleteRepeteInArray } from '@helpers/array-utils'
 
 const Search = () => {
     const [search, setSearch] = useState<string>()
+    const { data, fetchData } = useApi<ResultSearch>()
+    const [results, setResults] = useState<Item[]>([])
+    const [delayTimer, setDelayTimer] = useState<NodeJS.Timeout>()
+
+    useEffect(() => {
+        return () => {
+            clearTimeout(delayTimer)
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log('estado => ', data)
+
+        if (!data.isLoading && data.isSuccess) {
+            console.log('data => ', data)
+            if (data.data && data.data.items.length > 0) {
+                // let newResult = [...results, ...data.data?.items]
+                // setResults(deleteRepeteInArray(newResult, 'id', 'videoId'))
+                setResults([...data.data.items])
+            }
+        }
+    }, [data])
+
+    const handleSearch = (value: string) => {
+        clearTimeout(delayTimer)
+        setSearch(value)
+        setDelayTimer(
+            setTimeout(() => {
+                fetchData(`search?q=${value}`)
+            }, 1000)
+        )
+    }
+
     return (
         <Wrapper
             initial={{ x: 100, opacity: 0 }}
@@ -26,11 +62,14 @@ const Search = () => {
                     <Input
                         placeHolder="Buscar canción, artista..."
                         value={search}
-                        setValue={setSearch}
+                        setValue={handleSearch}
+                        loading={data?.isLoading}
                     />
                 </div>
                 <Avatar />
             </div>
+
+            {JSON.stringify(results)}
         </Wrapper>
     )
 }
