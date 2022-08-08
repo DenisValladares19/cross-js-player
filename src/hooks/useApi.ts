@@ -1,3 +1,4 @@
+import { BASE_URL } from './../helpers/constants'
 import { useEffect, useReducer } from 'react'
 import typeStateFetch from '@root/interfaces/TypeStateFetch'
 import ResponseApi from '@root/interfaces/ResponseApi'
@@ -16,7 +17,7 @@ interface typeRequest {
     data?: any
 }
 
-function useApi<T>(value: string | typeRequest) {
+function useApi<T>(value?: string | typeRequest) {
     const initialState: typeStateFetch<T> = {
         isLoading: false,
         isSuccess: false,
@@ -43,7 +44,7 @@ function useApi<T>(value: string | typeRequest) {
                     ...state,
                     isLoading: false,
                     isError: false,
-                    isSuccess: false,
+                    isSuccess: true,
                     message: action.payload?.message,
                     data: action.payload?.data,
                 }
@@ -80,21 +81,32 @@ function useApi<T>(value: string | typeRequest) {
         }
     }, [])
 
-    const request = async (config: typeRequest) => {
+    const request = async (config: typeRequest | string) => {
         try {
             dispatch({ type: 'INIT' })
-            if (['POST', 'PUT'].includes(config.method)) {
-                config.data = JSON.stringify(config.data || {})
-            }
+            let data: ResponseApi<T>
+            if (typeof config === 'string') {
+                const resp = await fetch(BASE_URL + config, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                data = await resp.json()
+            } else {
+                if (['POST', 'PUT'].includes(config.method)) {
+                    config.data = JSON.stringify(config.data || {})
+                }
 
-            const response = await fetch(config.url, {
-                body: config.data,
-                method: config.method,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            const data: ResponseApi<any> = await response.json()
+                const response = await fetch(BASE_URL + config.url, {
+                    body: config.data,
+                    method: config.method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                data = await response.json()
+            }
 
             if (data.status === 200) {
                 dispatch({
@@ -117,7 +129,7 @@ function useApi<T>(value: string | typeRequest) {
         }
     }
 
-    return [state, request]
+    return { data: state, fetchData: request }
 }
 
 export default useApi
