@@ -12,6 +12,7 @@ import useApi from '@hooks/useApi'
 import backIcon from '@assets/icon/back.svg'
 import { deleteRepeteInArray } from '@helpers/array-utils'
 import EmptySearchImage from '@components/EmptySearchImage'
+import CardDisplay from '@components/CardDisplay'
 
 const Search = () => {
     const [search, setSearch] = useState<string>()
@@ -70,10 +71,16 @@ const Search = () => {
                 <Avatar />
             </div>
 
-            <div className="container-empty">
-                <EmptySearchImage />
-                <div className="label-empty">Que estamos buscando ahora.</div>
-            </div>
+            <CardDisplay />
+
+            {/* {!results || results.length === 0 ? (
+                <div className="container-empty">
+                    <EmptySearchImage />
+                    <div className="label-empty">
+                        Que estamos buscando ahora.
+                    </div>
+                </div>
+            ) : null} */}
         </Wrapper>
     )
 }
