@@ -10,15 +10,17 @@ import useApi from '@hooks/useApi'
 
 // assets
 import backIcon from '@assets/icon/back.svg'
-import { deleteRepeteInArray } from '@helpers/array-utils'
 import EmptySearchImage from '@components/EmptySearchImage'
 import CardDisplay from '@components/CardDisplay'
+import { truncate } from '@helpers/string-utils'
+import useWindowSize from '@hooks/useWindowSize'
 
 const Search = () => {
     const [search, setSearch] = useState<string>()
     const { data, fetchData } = useApi<ResultSearch>()
     const [results, setResults] = useState<Item[]>([])
     const [delayTimer, setDelayTimer] = useState<NodeJS.Timeout>()
+    const { width: widthWindow } = useWindowSize()
 
     useEffect(() => {
         return () => {
@@ -49,6 +51,14 @@ const Search = () => {
         )
     }
 
+    const getSizetitle = (width: number | undefined): number => {
+        if (!width) {
+            return innerWidth / 12
+        }
+
+        return width / 12
+    }
+
     return (
         <Wrapper
             initial={{ x: 100, opacity: 0 }}
@@ -75,7 +85,10 @@ const Search = () => {
                 ? results.map((item: Item) => (
                       <CardDisplay
                           author={item.snippet.channelTitle}
-                          title={item.snippet.title}
+                          title={truncate(
+                              item.snippet.title,
+                              getSizetitle(widthWindow)
+                          )}
                           imageSrc={item.snippet.thumbnails.medium.url}
                           videoId={item.id.videoId}
                       />
