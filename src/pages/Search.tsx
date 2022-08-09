@@ -16,7 +16,7 @@ import { truncate } from '@helpers/string-utils'
 import useWindowSize from '@hooks/useWindowSize'
 
 const Search = () => {
-    const [search, setSearch] = useState<string>()
+    const [search, setSearch] = useState<string>('')
     const { data, fetchData } = useApi<ResultSearch>()
     const [results, setResults] = useState<Item[]>([])
     const [delayTimer, setDelayTimer] = useState<NodeJS.Timeout>()
@@ -29,15 +29,14 @@ const Search = () => {
     }, [])
 
     useEffect(() => {
-        console.log('estado => ', data)
-
         if (!data.isLoading && data.isSuccess) {
-            console.log('data => ', data)
             if (data.data && data.data.items.length > 0) {
                 // let newResult = [...results, ...data.data?.items]
                 // setResults(deleteRepeteInArray(newResult, 'id', 'videoId'))
                 setResults([...data.data.items])
             }
+        } else if (!data.isLoading && data.isError) {
+            setResults([])
         }
     }, [data])
 
@@ -73,7 +72,7 @@ const Search = () => {
                 <div className="input-search">
                     <Input
                         placeHolder="Buscar canción, artista..."
-                        value={search}
+                        value={search || ''}
                         setValue={handleSearch}
                         loading={data?.isLoading}
                     />
@@ -91,6 +90,7 @@ const Search = () => {
                           )}
                           imageSrc={item.snippet.thumbnails.medium.url}
                           videoId={item.id.videoId}
+                          key={item.id.videoId}
                       />
                   ))
                 : null}
