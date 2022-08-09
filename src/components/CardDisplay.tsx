@@ -35,7 +35,7 @@ const Wrapper = styled(motion.div)`
     justify-content: space-between;
     width: 100%;
     height: 50px;
-    margin: 5px 0;
+    margin: 15px 0;
 
     .container-info {
         display: flex;
