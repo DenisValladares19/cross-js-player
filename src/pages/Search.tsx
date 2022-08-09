@@ -11,6 +11,7 @@ import useApi from '@hooks/useApi'
 // assets
 import backIcon from '@assets/icon/back.svg'
 import { deleteRepeteInArray } from '@helpers/array-utils'
+import EmptySearchImage from '@components/EmptySearchImage'
 
 const Search = () => {
     const [search, setSearch] = useState<string>()
@@ -69,7 +70,10 @@ const Search = () => {
                 <Avatar />
             </div>
 
-            {JSON.stringify(results)}
+            <div className="container-empty">
+                <EmptySearchImage />
+                <div className="label-empty">Que estamos buscando ahora.</div>
+            </div>
         </Wrapper>
     )
 }
@@ -88,6 +92,20 @@ const Wrapper = styled(motion.div)`
 
     .input-search {
         width: calc(100% - 60px);
+    }
+
+    .container-empty {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: calc(100vh - 115px - 60px);
+
+        .label-empty {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-top: 20px;
+        }
     }
 `
 
