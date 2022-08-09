@@ -1,15 +1,25 @@
 import { MoreOutlined } from '@ant-design/icons'
 import { motion } from 'framer-motion'
+import { FC } from 'react'
 import styled from 'styled-components'
+import CustomImage from './Image'
 
-const CardDisplay = () => {
+interface CardDisplayProps {
+    imageSrc: string
+    title: string
+    author: string
+    videoId: string
+}
+
+const CardDisplay: FC<CardDisplayProps> = (props) => {
+    const { author, imageSrc, title } = props
     return (
         <Wrapper>
             <div className="container-info">
-                <img src="" alt="Portada" />
+                <CustomImage className="portada" src={imageSrc} alt={title} />
                 <div className="container-item">
-                    <div className="title">Me porto bonito</div>
-                    <div className="description">Bad bunny</div>
+                    <div className="title">{title}</div>
+                    <div className="description">{author}</div>
                 </div>
             </div>
             <div className="icon">
@@ -32,10 +42,9 @@ const Wrapper = styled(motion.div)`
         align-items: center;
         height: 100%;
 
-        img {
+        .portada {
             width: 45px;
             height: 45px;
-            object-fit: cover;
         }
     }
 

@@ -71,16 +71,25 @@ const Search = () => {
                 <Avatar />
             </div>
 
-            <CardDisplay />
+            {results.length > 0
+                ? results.map((item: Item) => (
+                      <CardDisplay
+                          author={item.snippet.channelTitle}
+                          title={item.snippet.title}
+                          imageSrc={item.snippet.thumbnails.medium.url}
+                          videoId={item.id.videoId}
+                      />
+                  ))
+                : null}
 
-            {/* {!results || results.length === 0 ? (
+            {!results || results.length === 0 ? (
                 <div className="container-empty">
                     <EmptySearchImage />
                     <div className="label-empty">
                         Que estamos buscando ahora.
                     </div>
                 </div>
-            ) : null} */}
+            ) : null}
         </Wrapper>
     )
 }
