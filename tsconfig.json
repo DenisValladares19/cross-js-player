@@ -24,7 +24,8 @@
             "@pages/*": ["src/pages/*"],
             "@layout/*": ["src/layout/*"],
             "@assets/*": ["src/assets/*"],
-            "@root/*": ["src/*"]
+            "@root/*": ["src/*"],
+            "@reducers/*": ["src/reducers/*"]
         }
     },
     "include": ["src"],

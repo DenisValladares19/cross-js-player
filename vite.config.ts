@@ -13,6 +13,7 @@ export default defineConfig({
             '@context': resolve(__dirname, './src/context'),
             '@hooks': resolve(__dirname, './src/hooks'),
             '@layout': resolve(__dirname, './src/layout'),
+            '@reducers': resolve(__dirname, './src/reducers'),
         },
     },
     plugins: [react()],
