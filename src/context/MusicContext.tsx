@@ -33,14 +33,4 @@ const MusicProvider: FC<MusicProviderProps> = ({ children }) => {
     )
 }
 
-const useMusicContext = () => {
-    const context = useContext(MusicContext)
-
-    if (!context) {
-        throw new Error('useMusicContext must be used within a MusicProvider')
-    }
-
-    return context
-}
-
-export { MusicProvider, useMusicContext }
+export { MusicProvider, MusicContext }
