@@ -13,7 +13,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >
-            <g clip-path="url(#clip0_6_150)">
+            <g clipPath="url(#clip0_6_150)">
                 <path
                     d="M217.621 84.1209C216.557 94.8556 211.204 105.229 203.567 113.808C203.248 114.167 202.925 114.523 202.598 114.875C201.862 115.667 201.108 116.445 200.334 117.207C199.388 118.146 198.414 119.064 197.412 119.96C196.597 120.698 195.763 121.42 194.909 122.126C194.251 122.677 193.585 123.216 192.911 123.746C184.807 130.147 175.496 135.43 165.904 140.049C147.183 149.062 126.664 155.89 105.321 156.884C83.9813 157.876 61.7033 152.533 46.0532 139.81C24.9611 122.664 19.0745 94.0657 27.6378 70.0273C33.3335 54.0349 44.9585 39.5675 60.7797 30.1186C76.4641 20.7519 96.2506 16.5358 114.977 19.2917C129.926 11.3503 149.495 11.1983 165.747 17.0765C174.419 20.2137 182.201 24.8783 189.028 30.5148C192.155 33.1015 195.081 35.8677 197.786 38.795C198.062 39.0916 198.336 39.3906 198.607 39.6921C199.741 40.9455 200.839 42.2246 201.899 43.5295C203.421 45.4008 204.867 47.3137 206.235 49.2681C206.611 49.8063 206.985 50.347 207.35 50.8927C207.595 51.259 207.843 51.6278 208.085 51.9991C208.091 52.0067 208.095 52.0152 208.097 52.024C211.891 57.8573 214.992 64.0819 216.609 70.588C216.894 71.7392 217.133 72.8954 217.319 74.0615V74.064C217.481 75.0533 217.604 76.0475 217.686 77.0467C217.881 79.4025 217.859 81.7682 217.621 84.1209Z"
                     fill="#3F3D56"
@@ -34,7 +34,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     }}
                     transition={{
                         duration: 15,
-                        loop: Infinity,
+                        repeat: Infinity,
                         ease: 'linear',
                     }}
                 />
@@ -49,7 +49,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     }}
                     transition={{
                         duration: 15,
-                        loop: Infinity,
+                        repeat: Infinity,
                         ease: 'linear',
                     }}
                 />
@@ -64,7 +64,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     }}
                     transition={{
                         duration: 15,
-                        loop: Infinity,
+                        repeat: Infinity,
                         ease: 'linear',
                     }}
                 />
@@ -79,7 +79,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     }}
                     transition={{
                         duration: 15,
-                        loop: Infinity,
+                        repeat: Infinity,
                         ease: 'linear',
                     }}
                 />
@@ -94,7 +94,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     }}
                     transition={{
                         duration: 15,
-                        loop: Infinity,
+                        repeat: Infinity,
                         ease: 'linear',
                     }}
                 />
@@ -109,7 +109,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     }}
                     transition={{
                         duration: 15,
-                        loop: Infinity,
+                        repeat: Infinity,
                         ease: 'linear',
                     }}
                 />
@@ -124,7 +124,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     }}
                     transition={{
                         duration: 15,
-                        loop: Infinity,
+                        repeat: Infinity,
                         ease: 'linear',
                     }}
                 />
@@ -219,7 +219,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     transition={{
                         duration: 10,
                         ease: 'easeInOut',
-                        loop: Infinity,
+                        repeat: Infinity,
                     }}
                 />
                 <motion.path
@@ -233,7 +233,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     transition={{
                         duration: 10,
                         ease: 'easeInOut',
-                        loop: Infinity,
+                        repeat: Infinity,
                     }}
                 />
                 <motion.path
@@ -247,7 +247,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     transition={{
                         duration: 10,
                         ease: 'easeInOut',
-                        loop: Infinity,
+                        repeat: Infinity,
                     }}
                 />
                 <motion.path
@@ -261,7 +261,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     transition={{
                         duration: 10,
                         ease: 'easeInOut',
-                        loop: Infinity,
+                        repeat: Infinity,
                     }}
                 />
                 <motion.path
@@ -275,7 +275,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     transition={{
                         duration: 10,
                         ease: 'easeInOut',
-                        loop: Infinity,
+                        repeat: Infinity,
                     }}
                 />
                 <motion.path
@@ -289,7 +289,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     transition={{
                         duration: 10,
                         ease: 'easeInOut',
-                        loop: Infinity,
+                        repeat: Infinity,
                     }}
                 />
                 <motion.path
@@ -303,7 +303,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     transition={{
                         duration: 10,
                         ease: 'easeInOut',
-                        loop: Infinity,
+                        repeat: Infinity,
                     }}
                 />
                 <motion.path
@@ -317,7 +317,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     transition={{
                         duration: 10,
                         ease: 'easeInOut',
-                        loop: Infinity,
+                        repeat: Infinity,
                     }}
                 />
                 <motion.path
@@ -326,7 +326,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     animate={{ rotate: [0, 5, 10, 5, 0, -5, -10, -5, 0] }}
                     transition={{
                         duration: 5,
-                        loop: Infinity,
+                        repeat: Infinity,
                         ease: 'linear',
                     }}
                 />
@@ -341,7 +341,7 @@ const EmptySearchImage: FC<EmptySearchImageProps> = () => {
                     transition={{
                         duration: 10,
                         ease: 'easeInOut',
-                        loop: Infinity,
+                        repeat: Infinity,
                     }}
                 />
                 <path
