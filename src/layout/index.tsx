@@ -60,6 +60,7 @@ const Wrapper = styled.div`
     height: 100vh;
     width: 100vw;
     position: relative;
+    overflow: hidden;
 `
 
 const Main = styled.div<Omit<LayoutProps, 'children'>>`
@@ -70,6 +71,7 @@ const Main = styled.div<Omit<LayoutProps, 'children'>>`
         calculateHeight(hiddenHeader, hiddenBottomMenu)};
     overflow-y: auto;
     padding: 0 20px;
+    overflow-x: hidden;
 `
 
 export default Layout
