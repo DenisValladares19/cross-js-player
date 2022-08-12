@@ -35,10 +35,6 @@ const InfinityScroll: FC<InifinityScrollProps> = (props) => {
                 if (props.fetchMore) {
                     props.fetchMore()
                 }
-
-                setTimeout(() => {
-                    ref.current!.scrollTop = scrollTop - 50
-                }, 500)
             }
         }
     }

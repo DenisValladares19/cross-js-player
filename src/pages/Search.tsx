@@ -49,6 +49,10 @@ const Search = () => {
                             ),
                         },
                     })
+
+                    if (delayTimer) {
+                        setDelayTimer(undefined)
+                    }
                 } else {
                     dispatchSearch({
                         type: TypeActionSearch.SET_LIST_ITEMS,
@@ -86,8 +90,15 @@ const Search = () => {
     }
 
     const handleNextPage = () => {
-        setIsLoadMore(true)
-        fetchData(`search?q=${search.search}&nextPageToken=${nextPage}`)
+        // !TODO: Pendiente porque hay un bug se hacen bastante peticiones a la vez
+        console.log('handleNextPage [pendiente por bug]')
+        // clearTimeout(delayTimer)
+        // setDelayTimer(
+        //     setTimeout(() => {
+        //         setIsLoadMore(true)
+        //         fetchData(`search?q=${search.search}&nextPageToken=${nextPage}`)
+        //     }, 500)
+        // )
     }
 
     const getSizetitle = (width: number | undefined): number => {
@@ -132,29 +143,30 @@ const Search = () => {
                 </div>
                 <Avatar />
             </div>
-            <InfinityScroll
-                className="container-cards"
-                hasMore={getHasError()}
-                fetchMore={handleNextPage}
-                isLoading={isLoadMore && data.isLoading}
-                setValue={setIsLoadMore}
-            >
-                {search.listItems && search.listItems.length > 0
-                    ? search.listItems.map((item: Item) => (
-                          <CardDisplay
-                              author={item.snippet.channelTitle}
-                              title={truncate(
-                                  item.snippet.title,
-                                  getSizetitle(widthWindow)
-                              )}
-                              imageSrc={item.snippet.thumbnails.medium.url}
-                              videoId={item.id.videoId}
-                              key={item.id.videoId}
-                          />
-                      ))
-                    : null}
-            </InfinityScroll>
-            {!search.listItems || search.listItems.length === 0 ? (
+            {search.listItems && search.listItems.length > 0 && (
+                <InfinityScroll
+                    className="container-cards"
+                    hasMore={getHasError()}
+                    fetchMore={handleNextPage}
+                    isLoading={isLoadMore && data.isLoading}
+                    setValue={setIsLoadMore}
+                >
+                    {search.listItems.map((item: Item) => (
+                        <CardDisplay
+                            author={item.snippet.channelTitle}
+                            title={truncate(
+                                item.snippet.title,
+                                getSizetitle(widthWindow)
+                            )}
+                            imageSrc={item.snippet.thumbnails.medium.url}
+                            videoId={item.id.videoId}
+                            key={item.id.videoId}
+                        />
+                    ))}
+                </InfinityScroll>
+            )}
+
+            {search.listItems && search.listItems.length === 0 ? (
                 <div className="container-empty">
                     <EmptySearchImage />
                     <div className="label-empty">
