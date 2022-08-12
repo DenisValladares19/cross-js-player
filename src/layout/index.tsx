@@ -1,8 +1,9 @@
 import { useLocation } from 'react-router-dom'
-import styled from 'styled-components'
 import { AnimatePresence } from 'framer-motion'
+import styled from 'styled-components'
 import BottomMenu from './BottomMenu'
 import Header from './Header'
+import Reproductor from '@components/Reproductor/Index'
 
 interface LayoutProps {
     children: JSX.Element | JSX.Element[]
@@ -48,6 +49,7 @@ const Layout = (props: LayoutProps) => {
                 {props.children}
             </Main>
             {!props.hiddenBottomMenu && <BottomMenu />}
+            <Reproductor />
         </Wrapper>
     )
 }
@@ -57,6 +59,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     height: 100vh;
     width: 100vw;
+    position: relative;
 `
 
 const Main = styled.div<Omit<LayoutProps, 'children'>>`
