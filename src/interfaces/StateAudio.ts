@@ -5,7 +5,7 @@ export interface Frecuency {
 
 export interface StateAudio {
     context: AudioContext | null
-    ecualizer: BiquadFilterNode[] | null
+    ecualizer: (BiquadFilterNode | null)[]
     gainLow: GainNode | null
     gainHigh: GainNode | null
     lowFilter: BiquadFilterNode | null

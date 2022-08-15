@@ -1,16 +1,36 @@
-import { getAudioContext } from '@helpers/audio-utils'
+import { createFilter, getAudioContext } from '@helpers/audio-utils'
 import {
     ActionAudio,
     StateAudio,
     TypeActionAudio,
+    Frecuency,
 } from '@root/interfaces/StateAudio'
 import { Dispatch } from 'react'
 
+const ctx = getAudioContext()
+
+const frecuencies: Frecuency[] = [
+    { frecuency: 32, vol: 0 },
+    { frecuency: 63, vol: 0 },
+    { frecuency: 125, vol: 0 },
+    { frecuency: 250, vol: 0 },
+    { frecuency: 500, vol: 0 },
+    { frecuency: 1000, vol: 0 },
+    { frecuency: 2000, vol: 0 },
+    { frecuency: 4000, vol: 0 },
+    { frecuency: 8000, vol: 0 },
+    { frecuency: 16000, vol: 0 },
+]
+
+const ecualizer: (BiquadFilterNode | null)[] = frecuencies.map((f) =>
+    createFilter('peaking', f.frecuency, f.vol, ctx)
+)
+
 export const intial: StateAudio = {
     activeEffect: true,
-    context: getAudioContext(),
-    ecualizer: [],
-    frecuencies: [],
+    context: ctx,
+    ecualizer,
+    frecuencies,
     gainHigh: null,
     gainLow: null,
     highFilter: null,

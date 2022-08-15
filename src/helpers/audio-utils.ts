@@ -15,10 +15,14 @@ const getAudioContext = () => {
     }
     return null
 }
-const createFilter = (type: typeFilter, frecuency: number, vol: number) => {
-    const audioContext = getAudioContext()
-    if (audioContext) {
-        const filter = audioContext.createBiquadFilter()
+const createFilter = (
+    type: typeFilter,
+    frecuency: number,
+    vol: number,
+    ctx: AudioContext | null
+) => {
+    if (ctx) {
+        const filter = ctx.createBiquadFilter()
         filter.type = type
         filter.frequency.value = frecuency
         filter.gain.value = vol
@@ -29,6 +33,7 @@ const createFilter = (type: typeFilter, frecuency: number, vol: number) => {
 
         return filter
     }
+
     return null
 }
 
