@@ -1,23 +1,32 @@
+import { ActionAudio, StateAudio } from '@root/interfaces/StateAudio'
+import { ActionPlayList, StatePlayList } from '@root/interfaces/StatePlayList'
 import { ActionSearch, StateSearch } from '@root/interfaces/StateSearch'
-import searchReducer from '@root/reducers/searchReducer'
 import { createContext, Dispatch, FC, useReducer } from 'react'
+import {
+    audioReducer,
+    initialAudio,
+    intial as StateAudioInitial,
+} from '@root/reducers/audioReducer'
+import {
+    InitialPlayList,
+    playListReducer,
+    playList as StatePlayListInitial,
+} from '@root/reducers/playListReducer'
+import searchReducer, {
+    initialSearch as StateSearchInitial,
+    search as InitialStateContext,
+} from '@root/reducers/searchReducer'
 
 interface MusicContextData {
     search: [StateSearch, Dispatch<ActionSearch>]
+    playList: [StatePlayList, Dispatch<ActionPlayList>]
+    audio: [StateAudio, Dispatch<ActionAudio>]
 }
-
-const initialSearch: StateSearch = {
-    search: '',
-    listItems: [],
-}
-
-const search: [StateSearch, Dispatch<ActionSearch>] = [
-    initialSearch,
-    (action: ActionSearch) => {},
-]
 
 const initialMusicContext = {
-    search,
+    search: InitialStateContext,
+    playList: InitialPlayList,
+    audio: initialAudio,
 }
 
 const MusicContext = createContext<MusicContextData>(initialMusicContext)
@@ -27,10 +36,24 @@ interface MusicProviderProps {
 }
 
 const MusicProvider: FC<MusicProviderProps> = ({ children }) => {
-    const [search, dispatchSearch] = useReducer(searchReducer, initialSearch)
+    const [audio, dispatchAudio] = useReducer(audioReducer, StateAudioInitial)
+    const [search, dispatchSearch] = useReducer(
+        searchReducer,
+        StateSearchInitial
+    )
+    const [playList, dispatchPlayList] = useReducer(
+        playListReducer,
+        StatePlayListInitial
+    )
 
     return (
-        <MusicContext.Provider value={{ search: [search, dispatchSearch] }}>
+        <MusicContext.Provider
+            value={{
+                search: [search, dispatchSearch],
+                playList: [playList, dispatchPlayList],
+                audio: [audio, dispatchAudio],
+            }}
+        >
             {children}
         </MusicContext.Provider>
     )
