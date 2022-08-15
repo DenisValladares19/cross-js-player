@@ -3,6 +3,17 @@ import {
     StateSearch,
     TypeActionSearch,
 } from '@root/interfaces/StateSearch'
+import { Dispatch } from 'react'
+
+export const initialSearch: StateSearch = {
+    search: '',
+    listItems: [],
+}
+
+export const search: [StateSearch, Dispatch<ActionSearch>] = [
+    initialSearch,
+    (action: ActionSearch) => {},
+]
 
 function searchReducer(state: StateSearch, action: ActionSearch) {
     switch (action.type) {
