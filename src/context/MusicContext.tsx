@@ -1,10 +1,9 @@
 import { ActionSearch, StateSearch } from '@root/interfaces/StateSearch'
 import searchReducer from '@root/reducers/searchReducer'
-import { createContext, Dispatch, FC, useContext, useReducer } from 'react'
+import { createContext, Dispatch, FC, useReducer } from 'react'
 
 interface MusicContextData {
-    search: StateSearch
-    dispatchSearch: Dispatch<ActionSearch>
+    search: [StateSearch, Dispatch<ActionSearch>]
 }
 
 const initialSearch: StateSearch = {
@@ -12,9 +11,13 @@ const initialSearch: StateSearch = {
     listItems: [],
 }
 
+const search: [StateSearch, Dispatch<ActionSearch>] = [
+    initialSearch,
+    (action: ActionSearch) => {},
+]
+
 const initialMusicContext = {
-    search: initialSearch,
-    dispatchSearch: (action: ActionSearch) => {},
+    search,
 }
 
 const MusicContext = createContext<MusicContextData>(initialMusicContext)
@@ -27,7 +30,7 @@ const MusicProvider: FC<MusicProviderProps> = ({ children }) => {
     const [search, dispatchSearch] = useReducer(searchReducer, initialSearch)
 
     return (
-        <MusicContext.Provider value={{ search, dispatchSearch }}>
+        <MusicContext.Provider value={{ search: [search, dispatchSearch] }}>
             {children}
         </MusicContext.Provider>
     )
