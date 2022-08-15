@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Item, ResultSearch } from '@root/interfaces/ResultSearch'
 import { truncate } from '@helpers/string-utils'
 import { TypeActionSearch } from '@root/interfaces/StateSearch'
+import { deleteRepeteInArray } from '@helpers/array-utils'
 
 // components and hooks
 import Avatar from '@components/Avatar'
@@ -12,18 +13,17 @@ import useApi from '@hooks/useApi'
 import EmptySearchImage from '@components/EmptySearchImage'
 import CardDisplay from '@components/CardDisplay'
 import useWindowSize from '@hooks/useWindowSize'
-import useMusicContext from '@hooks/useMusicContext'
 import InfinityScroll from '@components/InfinityScroll'
+import useSearchMusic from '@hooks/useSearchMusic'
 
 // assets
 import backIcon from '@assets/icon/back.svg'
-import { deleteRepeteInArray } from '@helpers/array-utils'
 
 const Search = () => {
     const { data, fetchData } = useApi<ResultSearch>()
     const [delayTimer, setDelayTimer] = useState<NodeJS.Timeout>()
     const { width: widthWindow } = useWindowSize()
-    const { search, dispatchSearch } = useMusicContext()
+    const [search, dispatchSearch] = useSearchMusic()
     const [isLoadMore, setIsLoadMore] = useState<boolean>(false)
     const [nextPage, setNextPage] = useState<string>('')
 
