@@ -12,6 +12,10 @@ export interface StateAudio {
     highFilter: BiquadFilterNode | null
     frecuencies: Frecuency[] | null
     activeEffect: boolean | null
+    volHigh: number | null
+    volLow: number | null
+    frecHigh: number | null
+    frecLow: number | null
 }
 
 export enum TypeActionAudio {
@@ -24,6 +28,10 @@ export enum TypeActionAudio {
     'SET_HIGH_FILTER' = 'SET_HIGH_FILTER',
     'SET_FRECUENCIES' = 'SET_FRECUENCIES',
     'RESET_FRECUENCIES' = 'RESET_FRECUENCIES',
+    'SET_VOL_HIGH' = 'SET_VOL_HIGH',
+    'SET_VOL_LOW' = 'SET_VOL_LOW',
+    'SET_FREC_HIGH' = 'SET_FREC_HIGH',
+    'SET_FREC_LOW' = 'SET_FREC_LOW',
 }
 
 export interface ActionAudio {
@@ -37,5 +45,9 @@ export interface ActionAudio {
         highFilter?: BiquadFilterNode
         frecuencies?: Frecuency[]
         activeEffect?: boolean
+        volHigh?: number
+        volLow?: number
+        frecHigh?: number
+        frecLow?: number
     }
 }
