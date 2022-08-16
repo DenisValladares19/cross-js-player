@@ -122,6 +122,30 @@ export function audioReducer(
                 frecuencies: [],
             }
 
+        case TypeActionAudio.SET_VOL_HIGH:
+            return {
+                ...state,
+                volHigh: action.payload?.volHigh ?? state.volHigh,
+            }
+
+        case TypeActionAudio.SET_VOL_LOW:
+            return {
+                ...state,
+                volLow: action.payload?.volLow ?? state.volLow,
+            }
+
+        case TypeActionAudio.SET_FREC_HIGH:
+            return {
+                ...state,
+                frecHigh: action.payload?.frecHigh ?? state.frecHigh,
+            }
+
+        case TypeActionAudio.SET_FREC_LOW:
+            return {
+                ...state,
+                frecLow: action.payload?.frecLow ?? state.frecLow,
+            }
+
         default:
             return state
     }
