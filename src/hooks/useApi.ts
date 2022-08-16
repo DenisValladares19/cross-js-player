@@ -17,7 +17,12 @@ interface typeRequest {
     data?: any
 }
 
-function useApi<T>(value?: string | typeRequest) {
+type useApiReturn<T> = [
+    typeStateFetch<T>,
+    (config: typeRequest | string) => void
+]
+
+function useApi<T>(value?: string | typeRequest): useApiReturn<T> {
     const initialState: typeStateFetch<T> = {
         isLoading: false,
         isSuccess: false,
@@ -129,7 +134,7 @@ function useApi<T>(value?: string | typeRequest) {
         }
     }
 
-    return { data: state, fetchData: request }
+    return [state, request]
 }
 
 export default useApi

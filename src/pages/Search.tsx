@@ -20,7 +20,7 @@ import useSearchMusic from '@hooks/useSearchMusic'
 import backIcon from '@assets/icon/back.svg'
 
 const Search = () => {
-    const { data, fetchData } = useApi<ResultSearch>()
+    const [data, fetchData] = useApi<ResultSearch>()
     const [delayTimer, setDelayTimer] = useState<NodeJS.Timeout>()
     const { width: widthWindow } = useWindowSize()
     const [search, dispatchSearch] = useSearchMusic()

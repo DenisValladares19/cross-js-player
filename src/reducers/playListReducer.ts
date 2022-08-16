@@ -7,7 +7,7 @@ import {
 
 export const playList: StatePlayList = {
     list: [],
-    showReproductor: false,
+    showReproductor: true,
 }
 
 export const InitialPlayList: [StatePlayList, Dispatch<ActionPlayList>] = [

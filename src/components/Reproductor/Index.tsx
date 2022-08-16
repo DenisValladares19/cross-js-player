@@ -7,6 +7,7 @@ import ProgressBar from './ProgressBar'
 import Controls from './Controls'
 import PlayList from './PlayList'
 import usePlayList from '@hooks/usePlayList'
+import useApi from '@hooks/useApi'
 
 const variants = {
     visible: {
@@ -27,6 +28,7 @@ const variants = {
 
 const Index = () => {
     const { statePlayList, setShow } = usePlayList()
+    const [stateData, fetchData] = useApi()
 
     return (
         <Wrapper
