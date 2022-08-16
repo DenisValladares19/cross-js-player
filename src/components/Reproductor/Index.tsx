@@ -6,6 +6,7 @@ import Image from '@components/Image'
 import ProgressBar from './ProgressBar'
 import Controls from './Controls'
 import PlayList from './PlayList'
+import usePlayList from '@hooks/usePlayList'
 
 const variants = {
     visible: {
@@ -23,18 +24,20 @@ const variants = {
         },
     },
 }
+
 const Index = () => {
-    const [isVisible, setIsVisible] = useState<boolean>(true)
+    const { statePlayList, setShow } = usePlayList()
+
     return (
         <Wrapper
             initial={{ y: '100vh' }}
             variants={variants}
-            animate={isVisible ? 'visible' : 'hidden'}
+            animate={statePlayList.showReproductor ? 'visible' : 'hidden'}
         >
             <ContainerTitle>
                 <DownOutlined
                     className="icon"
-                    onClick={() => setIsVisible(!isVisible)}
+                    onClick={() => setShow(!statePlayList.showReproductor)}
                 />
                 <div className="title">Reproduciendo</div>
             </ContainerTitle>
