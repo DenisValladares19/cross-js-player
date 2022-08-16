@@ -1,4 +1,4 @@
-import { createFilter, getAudioContext } from '@helpers/audio-utils'
+import { createFilter, createGain, getAudioContext } from '@helpers/audio-utils'
 import {
     ActionAudio,
     StateAudio,
@@ -26,16 +26,34 @@ const ecualizer: (BiquadFilterNode | null)[] = frecuencies.map((f) =>
     createFilter('peaking', f.frecuency, f.vol, ctx)
 )
 
-export const intial: StateAudio = {
+export let intial: StateAudio = {
     activeEffect: true,
     context: ctx,
     ecualizer,
     frecuencies,
-    gainHigh: null,
-    gainLow: null,
+    gainHigh: createGain(1, ctx),
+    gainLow: createGain(1, ctx),
     highFilter: null,
     lowFilter: null,
+    volHigh: 1,
+    volLow: 1,
+    frecHigh: 300,
+    frecLow: 300,
 }
+
+intial.highFilter = createFilter(
+    'highpass',
+    intial.frecHigh ?? 300,
+    intial.volHigh ?? 1,
+    ctx
+)
+
+intial.lowFilter = createFilter(
+    'lowpass',
+    intial.frecLow ?? 300,
+    intial.volLow ?? 1,
+    ctx
+)
 
 export type typeAudioMusic = [StateAudio, Dispatch<ActionAudio>]
 
