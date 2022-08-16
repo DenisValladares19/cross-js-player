@@ -21,7 +21,7 @@ const SongCard = (props: IProps) => {
     return (
         <Wrapper>
             {(songs || []).map((song, i) => (
-                <div className="contain">
+                <div className="contain" key={song.titleSong}>
                     <img src={song?.imgSong || ''} alt="imgSong" />
                     <div className="infoSong">
                         <h3> {song?.titleSong || ''} </h3>
