@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { DownOutlined } from '@ant-design/icons'
 import Image from '@components/Image'
@@ -29,6 +29,8 @@ const variants = {
 const Index = () => {
     const { statePlayList, setShow } = usePlayList()
     const [stateData, fetchData] = useApi()
+
+    useEffect(() => {}, [])
 
     return (
         <Wrapper

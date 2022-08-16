@@ -30,7 +30,8 @@ export function playListReducer(
             if (
                 state.list.find(
                     (item) =>
-                        item.id.videoId === action.payload.item?.id.videoId
+                        item.item.id.videoId ===
+                        action.payload.item?.item.id.videoId
                 )
             ) {
                 return state
@@ -52,7 +53,8 @@ export function playListReducer(
                 list: state.list.filter((item) => {
                     if (action.payload.item) {
                         return (
-                            item.id.videoId !== action.payload.item.id.videoId
+                            item.item.id.videoId !==
+                            action.payload.item.item.id.videoId
                         )
                     }
                     return true

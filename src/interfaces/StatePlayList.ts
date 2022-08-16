@@ -1,8 +1,13 @@
 import { Item } from './ResultSearch'
 
 export interface StatePlayList {
-    list: Item[]
+    list: ItemPlayList[]
     showReproductor: boolean
+}
+
+export interface ItemPlayList {
+    isActive: boolean
+    item: Item
 }
 
 export enum TypeActionPlayList {
@@ -16,8 +21,8 @@ export enum TypeActionPlayList {
 export interface ActionPlayList {
     type: TypeActionPlayList
     payload: {
-        list?: Item[]
-        item?: Item
+        list?: ItemPlayList[]
+        item?: ItemPlayList
         showReproductor?: boolean
     }
 }

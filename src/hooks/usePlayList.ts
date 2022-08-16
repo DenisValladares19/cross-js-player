@@ -1,5 +1,8 @@
 import { MusicContext } from '@root/context/MusicContext'
-import { TypeActionPlayList } from '@root/interfaces/StatePlayList'
+import {
+    ItemPlayList,
+    TypeActionPlayList,
+} from '@root/interfaces/StatePlayList'
 import { useContext } from 'react'
 
 const usePlayList = () => {
@@ -15,7 +18,21 @@ const usePlayList = () => {
         })
     }
 
-    return { statePlayList: state, dispatchPlayList: dispatch, setShow }
+    const setItem = (item: ItemPlayList): void => {
+        dispatch({
+            type: TypeActionPlayList.ADD_SINGLE_ITEM,
+            payload: {
+                item,
+            },
+        })
+    }
+
+    return {
+        statePlayList: state,
+        dispatchPlayList: dispatch,
+        setShow,
+        setItem,
+    }
 }
 
 export default usePlayList
