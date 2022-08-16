@@ -7,6 +7,7 @@ import {
 
 export const playList: StatePlayList = {
     list: [],
+    showReproductor: false,
 }
 
 export const InitialPlayList: [StatePlayList, Dispatch<ActionPlayList>] = [
@@ -62,6 +63,12 @@ export function playListReducer(
             return {
                 ...state,
                 list: [],
+            }
+
+        case TypeActionPlayList.SET_SHOW_REPRODUCTOR:
+            return {
+                ...state,
+                showReproductor: action.payload.showReproductor ?? false,
             }
 
         default:
