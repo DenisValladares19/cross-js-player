@@ -37,10 +37,9 @@ const createFilter = (
     return null
 }
 
-const createGain = (vol: number) => {
-    const audioContext = getAudioContext()
-    if (audioContext) {
-        const gain = audioContext.createGain()
+const createGain = (vol: number, ctx: AudioContext | null) => {
+    if (ctx) {
+        const gain = ctx.createGain()
         gain.gain.value = vol
         return gain
     }
