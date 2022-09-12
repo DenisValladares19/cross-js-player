@@ -30,7 +30,16 @@ const Index = () => {
     const { statePlayList, setShow } = usePlayList()
     const [stateData, fetchData] = useApi()
 
-    useEffect(() => {}, [])
+    useEffect(() => {
+        const url = 'saGYMhApaH8'
+        fetchData({
+            method: 'POST',
+            url: 'download',
+            data: { url },
+        })
+    }, [])
+
+    console.log('[STATUS] [useApi] [data] => ', stateData)
 
     return (
         <Wrapper
